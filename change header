@@ -1,0 +1,19 @@
+Sub ReplaceHeadersOfMultiplesOf6()
+    Dim col As Long
+    Dim lastCol As Long
+    Dim sourceCol As Long
+    Dim headerRow As Long
+    Dim valueToUse As String
+
+    headerRow = 1
+    lastCol = Cells(headerRow, Columns.Count).End(xlToLeft).Column
+
+    For col = 6 To lastCol Step 6
+        sourceCol = col - 3  ' Because 6 -> 3, 12 -> 6, 18 -> 9, etc.
+        valueToUse = CStr(Cells(2, sourceCol).Value) ' Force as string
+
+        If valueToUse <> "" Then
+            Cells(headerRow, col).Value = valueToUse
+        End If
+    Next col
+End Sub
