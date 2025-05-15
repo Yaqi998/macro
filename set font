@@ -1,0 +1,21 @@
+Sub SetChartFonts()
+    Dim ch As Chart
+    Set ch = ActiveSheet.ChartObjects(1).Chart ' Use (2) or (3) for other charts
+
+    With ch
+        On Error Resume Next
+        .ChartTitle.Font.Name = "Calibri"
+        .ChartTitle.Font.Size = 12
+        .Axes(xlCategory).TickLabels.Font.Name = "Calibri"
+        .Axes(xlCategory).TickLabels.Font.Size = 10
+        .Axes(xlValue).TickLabels.Font.Name = "Calibri"
+        .Axes(xlValue).TickLabels.Font.Size = 10
+        .Axes(xlCategory).AxisTitle.Font.Name = "Calibri"
+        .Axes(xlCategory).AxisTitle.Font.Size = 11
+        .Axes(xlValue).AxisTitle.Font.Name = "Calibri"
+        .Axes(xlValue).AxisTitle.Font.Size = 11
+        .Legend.Font.Name = "Calibri"
+        .Legend.Font.Size = 10
+        On Error GoTo 0
+    End With
+End Sub
