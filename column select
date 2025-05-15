@@ -1,0 +1,27 @@
+Sub SelectColumnsWithHeaderContainingString()
+    Dim ws As Worksheet
+    Dim lastCol As Long
+    Dim col As Long
+    Dim target As String
+    Dim selectedRange As Range
+
+    Set ws = ActiveSheet
+    target = "string1" ' ← Change this to the string you want to match
+    lastCol = ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column
+
+    For col = 1 To lastCol
+        If InStr(1, ws.Cells(1, col).Value, target, vbTextCompare) > 0 Then
+            If selectedRange Is Nothing Then
+                Set selectedRange = ws.Columns(col)
+            Else
+                Set selectedRange = Union(selectedRange, ws.Columns(col))
+            End If
+        End If
+    Next col
+
+    If Not selectedRange Is Nothing Then
+        selectedRange.Select
+    Else
+        MsgBox "No headers contain the string '" & target & "'."
+    End If
+End Sub
